@@ -17,12 +17,15 @@ use clap_stdin::MaybeStdin;
 )]
 pub struct Cli {
     /// Unit to convert from
+    #[arg(value_enum)]
     pub from: Unit,
 
     /// Unit to convert to
+    #[arg(value_enum)]
     pub to: Unit,
 
     /// Use double precision
+    #[arg(short, long)]
     pub double: bool,
 
     /// Value to convert. `-` for stdin

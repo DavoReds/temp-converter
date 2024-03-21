@@ -1,7 +1,7 @@
+mod cli;
 use clap::Parser;
 use cli::Cli;
 
-mod cli;
 
 fn main() -> color_eyre::Result<()> {
     color_eyre::install()?;
