@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "temp-converter-lib",
+    "temp-converter",
+]
+resolver = "2"
