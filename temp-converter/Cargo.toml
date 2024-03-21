@@ -1,8 +1,27 @@
 [package]
 name = "temp-converter"
-version = "0.0.0"
+version = "2.0.15"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+authors = ["Dalia Rojas Vallejo <daliarojasvallejo@proton.me>"]
+categories = ["command-line-utilities", "science", "mathematics"]
+keywords = ["cli", "temperature", "converter", "units"]
+license = "Unlicense"
+readme = true
+repository = "https://gitlab.com/DavoReds/temp-converter"
+description = "Simple terminal temperature unit converter between Celsius, Fahrenheit and Kelvin."
 
 [dependencies]
+clap = { version = "4.5.3", features = ["derive", "wrap_help"] }
+clap-stdin = "0.4.0"
+color-eyre = "0.6.3"
+serde = { version = "1.0.197", features = ["derive"] }
+temp-converter-lib = { path = "../temp-converter-lib", version = "1.0.0" }
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[lints.clippy]
+enum_glob_use = "deny"
+nursery = "deny"
+pedantic = "deny"
+unwrap_used = "deny"
