@@ -1,7 +1,13 @@
 [package]
 name = "temp-converter-lib"
-version = "0.0.0"
+version = "1.0.0"
 edition = "2021"
 
-[dependencies]
-num-traits = "0.2.18"
+[lints.rust]
+unsafe_code = "forbid"
+
+[lints.clippy]
+enum_glob_use = "deny"
+nursery = "deny"
+pedantic = "deny"
+unwrap_used = "deny"

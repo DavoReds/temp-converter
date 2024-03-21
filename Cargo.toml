@@ -1,6 +1,10 @@
 [workspace]
-members = [
-    "temp-converter-lib",
-    "temp-converter",
-]
 resolver = "2"
+members = ["temp-converter-lib", "temp-converter"]
+
+[profile.release]
+strip = true
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
