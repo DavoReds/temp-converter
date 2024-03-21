@@ -2,6 +2,14 @@
 name = "temp-converter-lib"
 version = "1.0.0"
 edition = "2021"
+authors = ["Dalia Rojas Vallejo <daliarojasvallejo@proton.me>"]
+categories = ["science", "mathematics"]
+keywords = ["temperature", "converter", "units", "library", "no_deps"]
+license = "Unlicense"
+readme = true
+repository = "https://gitlab.com/DavoReds/temp-converter"
+description = "Simple terminal temperature unit converter between Celsius, Fahrenheit and Kelvin."
+rust-version = "1.59.0"
 
 [lints.rust]
 unsafe_code = "forbid"
