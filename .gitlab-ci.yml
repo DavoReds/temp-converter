@@ -1,0 +1,93 @@
+image: "rust:latest"
+
+cache:
+  key: "$CI_JOB_NAME"
+  untracked: true
+  paths:
+    - $HOME/.cargo/
+    - target/
+
+stages:
+  - test
+  - build
+  - release
+
+test-code:
+  stage: test
+  script:
+    - curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C
+      ${CARGO_HOME:-~/.cargo}/bin
+    - cargo nextest run
+
+format-code:
+  stage: test
+  script:
+    - rustup component add rustfmt
+    - cargo fmt -- --check
+
+lint-code:
+  stage: test
+  script:
+    - rustup component add clippy
+    - cargo clippy -- -D warnings
+
+build-linux:
+  stage: build
+  image: "registry.gitlab.com/davoreds/temp-converter/builder:latest"
+  rules:
+    - if: '$CI_COMMIT_TAG && $CI_COMMIT_TAG =~ /^v[0-9]\.[0-9]\.[0-9](-rc.+)?/'
+      when: always
+  script:
+    - rustup target add x86_64-unknown-linux-musl
+    - cargo zigbuild --release --target x86_64-unknown-linux-musl
+    - upx target/x86_64-unknown-linux-musl/release/temp-converter
+    - mv ./target/x86_64-unknown-linux-musl/release/temp-converter
+      temp-converter
+    - tar -czvf temp-converter.tar.gz temp-converter UNLICENSE README.md
+    - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file
+      ./temp-converter.tar.gz
+      "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/temp-converter/${CI_COMMIT_TAG}/temp-converter-x86_64-unknown-linux-musl.tar.gz"'
+
+build-windows:
+  stage: build
+  image: "registry.gitlab.com/davoreds/temp-converter/builder:latest"
+  rules:
+    - if: '$CI_COMMIT_TAG && $CI_COMMIT_TAG =~ /^v[0-9]\.[0-9]\.[0-9](-rc.+)?/'
+      when: always
+  script:
+    - rustup target add x86_64-pc-windows-gnu
+    - cargo zigbuild --release --target x86_64-pc-windows-gnu
+    - upx target/x86_64-pc-windows-gnu/release/temp-converter.exe
+    - mv ./target/x86_64-pc-windows-gnu/release/temp-converter.exe
+      temp-converter.exe
+    - zip temp-converter.zip temp-converter.exe UNLICENSE README.md
+    - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file
+      ./temp-converter.zip
+      "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/temp-converter/${CI_COMMIT_TAG}/temp-converter-x86_64-pc-windows-gnu.zip"'
+
+release:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  needs:
+    - job: build-windows
+      artifacts: true
+    - job: build-linux
+      artifacts: true
+  rules:
+    - if: '$CI_COMMIT_TAG && $CI_COMMIT_TAG =~ /^v[0-9]\.[0-9]\.[0-9](-rc.+)?/'
+      when: always
+  script:
+    - echo "Running release job for $TAG"
+  release:
+    name: "Release $CI_COMMIT_TAG"
+    description: "Created using the release-cli"
+    tag_name: "$CI_COMMIT_TAG"
+    ref: "$CI_COMMIT_SHA"
+    assets:
+      links:
+        - name: "temp-converter-x86_64-unknown-linux-musl.tar.gz"
+          filepath: "/binaries/temp-converter-x86_64-unknown-linux-musl-${CI_COMMIT_TAG}.tar.gz"
+          url: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/temp-converter/${CI_COMMIT_TAG}/temp-converter-x86_64-unknown-linux-musl.tar.gz"
+        - name: "temp-converter-x86_64-pc-windows-gnu.zip"
+          filepath: "/binaries/temp-converter-x86_64-pc-windows-gnu-${CI_COMMIT_TAG}.zip"
+          url: "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/temp-converter/${CI_COMMIT_TAG}/temp-converter-x86_64-pc-windows-gnu.zip"
