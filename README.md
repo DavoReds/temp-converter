@@ -1,3 +1,5 @@
+[![CI status](https://gitlab.com/DavoReds/temp-converter/badges/main/pipeline.svg)](https://gitlab.com/DavoReds/tasker/-/commits/main)
+
 # Temperature Converter
 
 Simple CLI utility to convert temperature units between Celsius, Fahrenheit and Kelvin. Can be used with either `f32` or `f64` types.
