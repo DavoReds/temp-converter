@@ -35,7 +35,7 @@ impl From<f64> for Float {
 }
 
 impl Float {
-    pub fn from_str(val: &str, is_double: bool) -> color_eyre::Result<Self> {
+    pub fn from_str(val: &str, is_double: bool) -> anyhow::Result<Self> {
         if is_double {
             let value: f64 = val.parse()?;
             Ok(value.into())
