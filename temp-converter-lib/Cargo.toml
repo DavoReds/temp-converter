@@ -1,6 +1,6 @@
 [package]
 name = "temp-converter-lib"
-version = "1.0.0"
+version = "3.0.1"
 edition = "2021"
 authors = ["Dalia Rojas Vallejo <daliarojasvallejo@proton.me>"]
 categories = ["science", "mathematics"]

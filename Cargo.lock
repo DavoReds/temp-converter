@@ -196,7 +196,7 @@ dependencies = [
 
 [[package]]
 name = "temp-converter"
-version = "3.0.0"
+version = "3.0.1"
 dependencies = [
  "anyhow",
  "clap",
@@ -206,7 +206,7 @@ dependencies = [
 
 [[package]]
 name = "temp-converter-lib"
-version = "1.0.0"
+version = "3.0.1"
 
 [[package]]
 name = "terminal_size"
