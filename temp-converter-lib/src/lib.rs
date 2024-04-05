@@ -85,135 +85,207 @@ pub fn fahrenheit_to_celsius_f64(val: f64) -> f64 {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use rstest::rstest;
 
     /// Checks whether the difference between two `f32` values is less than EPSILON
-    fn float_equals(x: f32, y: f32) -> bool {
+    fn float_equals_f32(x: f32, y: f32) -> bool {
         (x - y).abs() < f32::EPSILON
     }
 
-    #[test]
-    fn kelvin_to_celsius_works() {
-        let test_cases: [[f32; 2]; 5] = [
-            [0.0, -273.15],
-            [100.0, -173.15],
-            [1000.0, 726.85],
-            [5000.0, 4726.85],
-            [69_420.0, 69_146.85],
-        ];
-
-        for case in test_cases {
-            let result = kelvin_to_celsius_f32(case[0]);
-            assert!(
-                float_equals(result, case[1]),
-                "Expected: {}\t Received: {}",
-                case[1],
-                result
-            );
-        }
+    #[rstest]
+    #[case(0.0, -273.15)]
+    #[case(100.0, -173.15)]
+    #[case(1000.0, 726.85)]
+    #[case(5000.0, 4726.85)]
+    #[case(5000.0, 4726.85)]
+    fn kelvin_to_celsius_f32_works(#[case] input: f32, #[case] expected: f32) {
+        let result = kelvin_to_celsius_f32(input);
+        assert!(
+            float_equals_f32(result, expected),
+            "Expected: {}\tReceived: {}",
+            expected,
+            result
+        );
     }
 
-    #[test]
-    fn kelvin_to_fahrenheit_works() {
-        let test_cases: [[f32; 2]; 5] = [
-            [0.0, -459.66998],
-            [100.0, -279.66998],
-            [1000.0, 1340.33],
-            [5000.0, 8540.33],
-            [69_420.0, 124_496.33],
-        ];
-
-        for case in test_cases {
-            let result = kelvin_to_fahrenheit_f32(case[0]);
-            assert!(
-                float_equals(result, case[1]),
-                "Expected: {}\t Received: {}",
-                case[1],
-                result
-            );
-        }
+    #[rstest]
+    #[case(0.0, -459.66998)]
+    #[case(100.0, -279.66998)]
+    #[case(1000.0, 1340.33)]
+    #[case(5000.0, 8540.33)]
+    #[case(69_420.0, 124_496.33)]
+    fn kelvin_to_fahrenheit_f32_works(#[case] input: f32, #[case] expected: f32) {
+        let result = kelvin_to_fahrenheit_f32(input);
+        assert!(
+            float_equals_f32(result, expected),
+            "Expected: {}\t Received: {}",
+            expected,
+            result
+        );
     }
 
-    #[test]
-    fn celsius_to_kelvin_works() {
-        let test_cases: [[f32; 2]; 5] = [
-            [0.0, 273.15],
-            [100.0, 373.15],
-            [1000.0, 1273.15],
-            [5000.0, 5273.15],
-            [69_420.0, 69_693.15],
-        ];
-
-        for case in test_cases {
-            let result = celsius_to_kelvin_f32(case[0]);
-            assert!(
-                float_equals(result, case[1]),
-                "Expected: {}\t Received: {}",
-                case[1],
-                result
-            );
-        }
+    #[rstest]
+    #[case(0.0, 273.15)]
+    #[case(100.0, 373.15)]
+    #[case(1000.0, 1273.15)]
+    #[case(5000.0, 5273.15)]
+    #[case(69_420.0, 69_693.15)]
+    fn celsius_to_kelvin_f32_works(#[case] input: f32, #[case] expected: f32) {
+        let result = celsius_to_kelvin_f32(input);
+        assert!(
+            float_equals_f32(result, expected),
+            "Expected: {}\t Received: {}",
+            expected,
+            result
+        );
     }
 
-    #[test]
-    fn celsius_to_fahrenheit_works() {
-        let test_cases: [[f32; 2]; 5] = [
-            [0.0, 32.0],
-            [100.0, 212.0],
-            [1000.0, 1832.0],
-            [5000.0, 9032.0],
-            [69_420.0, 124_988.0],
-        ];
-
-        for case in test_cases {
-            let result = celsius_to_fahrenheit_f32(case[0]);
-            assert!(
-                float_equals(result, case[1]),
-                "Expected: {}\t Received: {}",
-                case[1],
-                result
-            );
-        }
+    #[rstest]
+    #[case(0.0, 32.0)]
+    #[case(100.0, 212.0)]
+    #[case(1000.0, 1832.0)]
+    #[case(5000.0, 9032.0)]
+    #[case(69_420.0, 124_988.0)]
+    fn celsius_to_fahrenheit_f32_works(#[case] input: f32, #[case] expected: f32) {
+        let result = celsius_to_fahrenheit_f32(input);
+        assert!(
+            float_equals_f32(result, expected),
+            "Expected: {}\t Received: {}",
+            expected,
+            result
+        );
     }
 
-    #[test]
-    fn fahreheit_to_kelvin_works() {
-        let test_cases: [[f32; 2]; 5] = [
-            [0.0, 255.37222],
-            [100.0, 310.92776],
-            [1000.0, 810.9278],
-            [5000.0, 3033.1501],
-            [69_420.0, 38_822.04],
-        ];
-
-        for case in test_cases {
-            let result = fahrenheit_to_kelvin_f32(case[0]);
-            assert!(
-                float_equals(result, case[1]),
-                "Expected: {}\t Received: {}",
-                case[1],
-                result
-            );
-        }
+    #[rstest]
+    #[case(0.0, 255.37222)]
+    #[case(100.0, 310.92776)]
+    #[case(1000.0, 810.9278)]
+    #[case(5000.0, 3033.1501)]
+    #[case(69_420.0, 38_822.04)]
+    fn fahreheit_to_kelvin_f32_works(#[case] input: f32, #[case] expected: f32) {
+        let result = fahrenheit_to_kelvin_f32(input);
+        assert!(
+            float_equals_f32(result, expected),
+            "Expected: {}\t Received: {}",
+            expected,
+            result
+        );
     }
 
-    #[test]
-    fn fahreheit_to_celsius_works() {
-        let test_cases: [[f32; 2]; 5] = [
-            [0.0, -17.777_779],
-            [100.0, 37.77778],
-            [1000.0, 537.77783],
-            [5000.0, 2_760.000_2],
-            [69_420.0, 38_548.89],
-        ];
+    #[rstest]
+    #[case(0.0, -17.777_779)]
+    #[case(100.0, 37.77778)]
+    #[case(1000.0, 537.77783)]
+    #[case(5000.0, 2_760.000_2)]
+    #[case(69_420.0, 38_548.89)]
+    fn fahreheit_to_celsius_f32_works(#[case] input: f32, #[case] expected: f32) {
+        let result = fahrenheit_to_celsius_f32(input);
+        assert!(
+            float_equals_f32(result, expected),
+            "Expected: {}\t Received: {}",
+            expected,
+            result
+        );
+    }
 
-        for case in test_cases {
-            let result = fahrenheit_to_celsius_f32(case[0]);
-            assert!(
-                float_equals(result, case[1]),
-                "Expected: {}\t Received: {}",
-                case[1],
-                result
-            );
-        }
+    /// Checks whether the difference between two `f64` values is less than EPSILON
+    fn float_equals_f64(x: f64, y: f64) -> bool {
+        (x - y).abs() < f64::EPSILON
+    }
+
+    #[rstest]
+    #[case(0.0, -273.15)]
+    #[case(100.0, -173.149_999_999_999_98)]
+    #[case(1000.0, 726.85)]
+    #[case(5000.0, 4726.85)]
+    #[case(5000.0, 4726.85)]
+    fn kelvin_to_celsius_f64_works(#[case] input: f64, #[case] expected: f64) {
+        let result = kelvin_to_celsius_f64(input);
+        assert!(
+            float_equals_f64(result, expected),
+            "Expected: {}\tReceived: {}",
+            expected,
+            result
+        );
+    }
+
+    #[rstest]
+    #[case(0.0, -459.669_999_999_999_96)]
+    #[case(100.0, -279.669_999_999_999_96)]
+    #[case(1000.0, 1340.330_000_000_000_2)]
+    #[case(5000.0, 8540.330_000_000_002)]
+    #[case(69_420.0, 124_496.330_000_000_02)]
+    fn kelvin_to_fahrenheit_f64_works(#[case] input: f64, #[case] expected: f64) {
+        let result = kelvin_to_fahrenheit_f64(input);
+        assert!(
+            float_equals_f64(result, expected),
+            "Expected: {}\t Received: {}",
+            expected,
+            result
+        );
+    }
+
+    #[rstest]
+    #[case(0.0, 273.15)]
+    #[case(100.0, 373.15)]
+    #[case(1000.0, 1273.15)]
+    #[case(5000.0, 5273.15)]
+    #[case(69_420.0, 69_693.15)]
+    fn celsius_to_kelvin_f64_works(#[case] input: f64, #[case] expected: f64) {
+        let result = celsius_to_kelvin_f64(input);
+        assert!(
+            float_equals_f64(result, expected),
+            "Expected: {}\t Received: {}",
+            expected,
+            result
+        );
+    }
+
+    #[rstest]
+    #[case(0.0, 32.0)]
+    #[case(100.0, 212.0)]
+    #[case(1000.0, 1832.0)]
+    #[case(5000.0, 9032.0)]
+    #[case(69_420.0, 124_988.0)]
+    fn celsius_to_fahrenheit_f64_works(#[case] input: f64, #[case] expected: f64) {
+        let result = celsius_to_fahrenheit_f64(input);
+        assert!(
+            float_equals_f64(result, expected),
+            "Expected: {}\t Received: {}",
+            expected,
+            result
+        );
+    }
+
+    #[rstest]
+    #[case(0.0, 255.372_222_222_222_2)]
+    #[case(100.0, 310.927_777_777_777_75)]
+    #[case(1000.0, 810.927_777_777_777_8)]
+    #[case(5000.0, 3033.15)]
+    #[case(69_420.0, 38_822.038_888_888_89)]
+    fn fahreheit_to_kelvin_f64_works(#[case] input: f64, #[case] expected: f64) {
+        let result = fahrenheit_to_kelvin_f64(input);
+        assert!(
+            float_equals_f64(result, expected),
+            "Expected: {}\t Received: {}",
+            expected,
+            result
+        );
+    }
+
+    #[rstest]
+    #[case(0.0, -17.777_777_777_777_78)]
+    #[case(100.0, 37.777_777_777_777_78)]
+    #[case(1000.0, 537.777_777_777_777_8)]
+    #[case(5000.0, 2760.0)]
+    #[case(69_420.0, 38_548.888_888_888_89)]
+    fn fahreheit_to_celsius_f64_works(#[case] input: f64, #[case] expected: f64) {
+        let result = fahrenheit_to_celsius_f64(input);
+        assert!(
+            float_equals_f64(result, expected),
+            "Expected: {}\t Received: {}",
+            expected,
+            result
+        );
     }
 }
