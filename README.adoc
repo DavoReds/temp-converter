@@ -1,4 +1,5 @@
 image:https://img.shields.io/github/actions/workflow/status/DavoReds/jango/ci.yml?branch=main&style=flat-square&logo=github&label=CI&color=%23a6e3a1[GitHub Actions Workflow Status]
+image:https://img.shields.io/crates/l/temp-converter?style=flat-square&logo=rust&color=%2374c7ec[Crates.io License]
 
 = Temperature Converter
 
