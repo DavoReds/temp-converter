@@ -1,6 +1,6 @@
 [package]
 name = "temp-converter"
-version = "3.1.0"
+version = "3.1.1"
 edition = "2021"
 authors = ["Dalia Rojas Vallejo <daliarojasvallejo@proton.me>"]
 categories = ["command-line-utilities", "science", "mathematics"]
