@@ -7,7 +7,7 @@ categories = ["command-line-utilities", "science", "mathematics"]
 keywords = ["cli", "temperature", "converter", "units"]
 license = "Unlicense"
 readme = true
-repository = "https://gitlab.com/DavoReds/temp-converter"
+repository = "https://github.com/DavoReds/temp-converter"
 description = "Simple terminal temperature unit converter between Celsius, Fahrenheit and Kelvin."
 
 [dependencies]

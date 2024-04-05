@@ -7,7 +7,7 @@ categories = ["science", "mathematics"]
 keywords = ["temperature", "converter", "units", "library", "no_deps"]
 license = "Unlicense"
 readme = true
-repository = "https://gitlab.com/DavoReds/temp-converter"
+repository = "https://github.com/DavoReds/temp-converter"
 description = "Simple terminal temperature unit converter between Celsius, Fahrenheit and Kelvin."
 rust-version = "1.59.0"
 
