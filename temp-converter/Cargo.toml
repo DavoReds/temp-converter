@@ -10,6 +10,12 @@ readme = true
 repository = "https://github.com/DavoReds/temp-converter"
 description = "Simple terminal temperature unit converter between Celsius, Fahrenheit and Kelvin."
 
+[package.metadata.wix]
+upgrade-guid = "3B8DB142-B486-4DBC-B974-191E14D8D45A"
+path-guid = "6DD9A667-6A8B-4410-9B9D-1283F8D8CBC2"
+license = false
+eula = false
+
 [dependencies]
 anyhow = "1.0.81"
 clap = { version = "4.5.3", features = ["derive", "wrap_help"] }
