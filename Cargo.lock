@@ -300,7 +300,7 @@ dependencies = [
 
 [[package]]
 name = "temp-converter"
-version = "3.1.1"
+version = "3.1.2"
 dependencies = [
  "anyhow",
  "clap",
@@ -310,7 +310,7 @@ dependencies = [
 
 [[package]]
 name = "temp-converter-lib"
-version = "3.1.1"
+version = "3.1.2"
 dependencies = [
  "rstest",
 ]
