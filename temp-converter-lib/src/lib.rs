@@ -102,9 +102,7 @@ mod tests {
         let result = kelvin_to_celsius_f32(input);
         assert!(
             float_equals_f32(result, expected),
-            "Expected: {}\tReceived: {}",
-            expected,
-            result
+            "Expected: {expected}\tReceived: {result}"
         );
     }
 
@@ -118,9 +116,7 @@ mod tests {
         let result = kelvin_to_fahrenheit_f32(input);
         assert!(
             float_equals_f32(result, expected),
-            "Expected: {}\t Received: {}",
-            expected,
-            result
+            "Expected: {expected}\t Received: {result}",
         );
     }
 
@@ -134,9 +130,7 @@ mod tests {
         let result = celsius_to_kelvin_f32(input);
         assert!(
             float_equals_f32(result, expected),
-            "Expected: {}\t Received: {}",
-            expected,
-            result
+            "Expected: {expected}\t Received: {result}",
         );
     }
 
@@ -150,9 +144,7 @@ mod tests {
         let result = celsius_to_fahrenheit_f32(input);
         assert!(
             float_equals_f32(result, expected),
-            "Expected: {}\t Received: {}",
-            expected,
-            result
+            "Expected: {expected}\t Received: {result}",
         );
     }
 
@@ -166,9 +158,7 @@ mod tests {
         let result = fahrenheit_to_kelvin_f32(input);
         assert!(
             float_equals_f32(result, expected),
-            "Expected: {}\t Received: {}",
-            expected,
-            result
+            "Expected: {expected}\t Received: {result}",
         );
     }
 
@@ -182,9 +172,7 @@ mod tests {
         let result = fahrenheit_to_celsius_f32(input);
         assert!(
             float_equals_f32(result, expected),
-            "Expected: {}\t Received: {}",
-            expected,
-            result
+            "Expected: {expected}\t Received: {result}",
         );
     }
 
@@ -203,25 +191,21 @@ mod tests {
         let result = kelvin_to_celsius_f64(input);
         assert!(
             float_equals_f64(result, expected),
-            "Expected: {}\tReceived: {}",
-            expected,
-            result
+            "Expected: {expected}\tReceived: {result}",
         );
     }
 
     #[rstest]
     #[case(0.0, -459.669_999_999_999_96)]
     #[case(100.0, -279.669_999_999_999_96)]
-    #[case(1000.0, 1340.330_000_000_000_2)]
-    #[case(5000.0, 8540.330_000_000_002)]
+    #[case(1000.0, 1_340.330_000_000_000_2)]
+    #[case(5000.0, 8_540.330_000_000_002)]
     #[case(69_420.0, 124_496.330_000_000_02)]
     fn kelvin_to_fahrenheit_f64_works(#[case] input: f64, #[case] expected: f64) {
         let result = kelvin_to_fahrenheit_f64(input);
         assert!(
             float_equals_f64(result, expected),
-            "Expected: {}\t Received: {}",
-            expected,
-            result
+            "Expected: {expected}\t Received: {result}",
         );
     }
 
@@ -235,9 +219,7 @@ mod tests {
         let result = celsius_to_kelvin_f64(input);
         assert!(
             float_equals_f64(result, expected),
-            "Expected: {}\t Received: {}",
-            expected,
-            result
+            "Expected: {expected}\t Received: {result}",
         );
     }
 
@@ -251,9 +233,7 @@ mod tests {
         let result = celsius_to_fahrenheit_f64(input);
         assert!(
             float_equals_f64(result, expected),
-            "Expected: {}\t Received: {}",
-            expected,
-            result
+            "Expected: {expected}\t Received: {result}",
         );
     }
 
@@ -267,9 +247,7 @@ mod tests {
         let result = fahrenheit_to_kelvin_f64(input);
         assert!(
             float_equals_f64(result, expected),
-            "Expected: {}\t Received: {}",
-            expected,
-            result
+            "Expected: {expected}\t Received: {result}",
         );
     }
 
@@ -283,9 +261,7 @@ mod tests {
         let result = fahrenheit_to_celsius_f64(input);
         assert!(
             float_equals_f64(result, expected),
-            "Expected: {}\t Received: {}",
-            expected,
-            result
+            "Expected: {expected}\t Received: {result}",
         );
     }
 }
