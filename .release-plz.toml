@@ -8,3 +8,16 @@ pr_labels = ["release"]
 allow_dirty = false
 publish_allow_dirty = false
 semver_check = false
+
+[[package]]
+name = "temp-converter"
+changelog_include = ["temp-converter-lib"]
+git_release_enable = false
+git_tag_name = "v{{ version }}"
+publish = true
+
+[[package]]
+name = "temp-converter-lib"
+git_release_enable = false
+git_tag_enable = false
+publish = true
