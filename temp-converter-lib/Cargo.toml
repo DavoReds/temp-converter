@@ -21,4 +21,4 @@ pedantic = "deny"
 unwrap_used = "deny"
 
 [dev-dependencies]
-rstest = { version = "0.19.0", default-features = false }
+rstest = { version = "0.21.0", default-features = false }
